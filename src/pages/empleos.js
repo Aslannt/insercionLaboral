@@ -1,3 +1,4 @@
+
 import { mostrarToast } from '../components/toast.js';
 
 export function cargarEmpleos() {
@@ -28,6 +29,33 @@ export function cargarEmpleos() {
       descripcion: 'Recepción, almacenamiento y despacho de mercancía.',
       fecha: '01/04/2025',
       imagen: '/src/assets/img/empleos/logistica.jpg'
+    },
+    {
+      id: 'empleo4',
+      icono: '💻',
+      titulo: 'Soporte Técnico',
+      empresa: 'Soluciones IT - Bucaramanga',
+      descripcion: 'Atención de requerimientos tecnológicos y soporte a usuarios.',
+      fecha: '04/04/2025',
+      imagen: '/src/assets/img/empleos/soporte.jpg'
+    },
+    {
+      id: 'empleo5',
+      icono: '🛒',
+      titulo: 'Auxiliar de Ventas',
+      empresa: 'Comercializadora Latina - Cartagena',
+      descripcion: 'Atención a clientes, ventas en tienda y manejo de caja.',
+      fecha: '05/04/2025',
+      imagen: '/src/assets/img/empleos/ventas.jpg'
+    },
+    {
+      id: 'empleo6',
+      icono: '🧹',
+      titulo: 'Servicios Generales',
+      empresa: 'CleanPro - Ibagué',
+      descripcion: 'Limpieza y mantenimiento de espacios administrativos.',
+      fecha: '06/04/2025',
+      imagen: '/src/assets/img/empleos/limpieza.jpg'
     }
   ];
 
