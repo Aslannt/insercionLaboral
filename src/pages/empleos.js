@@ -39,6 +39,7 @@ export function cargarEmpleos() {
     const yaPostulado = postulaciones.includes(emp.titulo);
     const card = document.createElement('div');
     card.className = 'bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-xl transition-transform hover:scale-105 flex flex-col';
+    card.setAttribute('data-aos', 'fade-up');
 
     card.innerHTML = `
       <img src="${emp.imagen}" alt="${emp.titulo}" class="w-full h-40 object-cover rounded mb-4">

@@ -63,35 +63,35 @@ document.addEventListener('submit', (e) => {
 
 // Swiper dinámico en secciones como Home
 window.addEventListener('DOMContentLoaded', () => {
-  initializeSwiper();
+  initializeSwiper();  // Swiper para sliders
+  AOS.init();          // AOS para animaciones al hacer scroll
 
-  // Lógica del registro (registro.html)
-if (location.hash === '#/register') {
-  const form = document.querySelector('#register-form');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+  // Lógica del registro
+  if (location.hash === '#/register') {
+    const form = document.querySelector('#register-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-      const nombre = form.nombre.value.trim();
-      const email = form.email.value.trim();
-      const area = form.area.value.trim();
+        const nombre = form.nombre.value.trim();
+        const email = form.email.value.trim();
+        const area = form.area.value.trim();
 
-      if (!nombre || !email || !area) {
-        alert('Por favor completa todos los campos.');
-        return;
-      }
+        if (!nombre || !email || !area) {
+          alert('Por favor completa todos los campos.');
+          return;
+        }
 
-      // Guardamos solo el nombre para mostrar en el navbar
-      localStorage.setItem('nombreUsuario', nombre);
-      alert('Registro exitoso');
+        localStorage.setItem('nombreUsuario', nombre);
+        alert('Registro exitoso');
 
-      location.hash = '#/';
-      location.reload();
-    });
+        location.hash = '#/';
+        location.reload();
+      });
+    }
   }
-}
-
 });
+
 
 // Función para activar Swipers después del router
 export function initializeSwiper() {
