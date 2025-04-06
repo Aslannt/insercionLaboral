@@ -2,42 +2,44 @@
 
     <!-- Encabezado -->
     <div class="text-center">
+      <img src="/src/assets/img/user-default.png" alt="Foto de perfil" class="w-24 h-24 mx-auto rounded-full shadow mb-4 object-cover">
       <h2 class="text-3xl font-bold mb-2">Mi Perfil</h2>
       <p class="text-gray-600 dark:text-gray-300">Consulta y administra tu información personal y actividad en la plataforma.</p>
     </div>
   
-    <!-- Información del usuario -->
+    <!-- Información Personal -->
     <div class="bg-white dark:bg-gray-800 p-6 rounded shadow space-y-4">
-      <h3 class="text-xl font-semibold mb-3">Información Personal</h3>
+      <h3 class="text-xl font-semibold mb-3">👤 Información Personal</h3>
       <div class="grid md:grid-cols-2 gap-4 text-sm">
-        <p><strong>Nombre:</strong> <span id="perfil-nombre">—</span></p>
-        <p><strong>Correo:</strong> <span id="perfil-email">—</span></p>
-        <p><strong>Número de documento:</strong> <span id="perfil-documento">—</span></p>
-        <p><strong>Nivel educativo:</strong> <span id="perfil-nivel">—</span></p>
-        <p><strong>Área de interés:</strong> <span id="perfil-interes">—</span></p>
+        <p><strong>👥 Nombre:</strong> <span id="perfil-nombre">—</span></p>
+        <p><strong>📧 Correo:</strong> <span id="perfil-email">—</span></p>
+        <p><strong>🆔 Documento:</strong> <span id="perfil-documento">—</span></p>
+        <p><strong>🎓 Nivel educativo:</strong> <span id="perfil-nivel">—</span></p>
+        <p><strong>💼 Área de interés:</strong> <span id="perfil-interes">—</span></p>
       </div>
     </div>
   
-<!-- Progreso de cursos dinámico -->
-<div class="bg-white dark:bg-gray-800 p-6 rounded shadow space-y-4">
-    <h3 class="text-xl font-semibold mb-3">Progreso en Cursos</h3>
-    <ul id="lista-cursos" class="space-y-3">
-      <li class="text-sm italic">Cargando tus cursos...</li>
-    </ul>
-  </div>
-  
-  
-    <!-- Postulaciones simuladas -->
+    <!-- Progreso en Cursos -->
     <div class="bg-white dark:bg-gray-800 p-6 rounded shadow space-y-4">
-      <h3 class="text-xl font-semibold mb-3">Mis Postulaciones</h3>
+      <h3 class="text-xl font-semibold mb-3">📘 Progreso en Cursos</h3>
+      <ul id="lista-cursos" class="space-y-3 text-sm">
+        <li class="text-gray-500">No hay cursos completados aún.</li>
+      </ul>
+    </div>
+  
+    <!-- Postulaciones -->
+    <div class="bg-white dark:bg-gray-800 p-6 rounded shadow space-y-4">
+      <h3 class="text-xl font-semibold mb-3">📄 Mis Postulaciones</h3>
       <ul id="lista-postulaciones" class="text-sm list-disc list-inside space-y-2">
-        <li>Cargando postulaciones...</li>
+        <li>No tienes postulaciones aún.</li>
       </ul>
     </div>
   
     <!-- Botón cerrar sesión -->
     <div class="text-center mt-6">
-      <button id="logout-btn" class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700">Cerrar sesión</button>
+      <button id="logout-btn" class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700">
+        Cerrar sesión
+      </button>
     </div>
   
     <!-- Botón volver al inicio -->

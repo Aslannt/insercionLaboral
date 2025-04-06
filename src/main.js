@@ -93,8 +93,9 @@ if (location.hash === '#/register') {
 
 });
 
-// Función para activar Swiper después del router
+// Función para activar Swipers después del router
 export function initializeSwiper() {
+  // Carrusel de historias de impacto
   if (document.querySelector('.mySwiper')) {
     new Swiper('.mySwiper', {
       modules: [Autoplay, Pagination, Navigation],
@@ -110,6 +111,23 @@ export function initializeSwiper() {
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
+      }
+    });
+  }
+
+  // Carrusel de aliados estratégicos
+  if (document.querySelector('.aliadosSwiper')) {
+    new Swiper('.aliadosSwiper', {
+      modules: [Autoplay],
+      loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false
+      },
+      slidesPerView: 2,
+      breakpoints: {
+        640: { slidesPerView: 3 },
+        1024: { slidesPerView: 4 }
       }
     });
   }

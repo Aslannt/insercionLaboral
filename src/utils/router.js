@@ -49,8 +49,10 @@ export async function router() {
     ) {
       setTimeout(() => {
         initializeSwiper();
+        import('/src/pages/estadisticas.js').then(mod => mod.mostrarEstadisticas());
       }, 100);
     }
+    
 
     // Si es perfil, carga su módulo JS
     if (hash === '#/perfil') {
@@ -76,6 +78,12 @@ export async function router() {
         setTimeout(() => mod.cargarEmpleos(), 100);
       });
     }
+    if (hash === '#/login') {
+      import('/src/pages/login.js').then(mod => {
+        setTimeout(() => mod.iniciarLogin(), 100);
+      });
+    }
+    
     
     
 
