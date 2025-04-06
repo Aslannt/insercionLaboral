@@ -10,27 +10,90 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 const app = document.querySelector('#app');
 
-// Renderiza estructura inicial
-app.innerHTML = `
-  ${renderNavbar()}
-  <main id="main-content" class="p-6 min-h-[70vh] transition-colors duration-300"></main>
-  ${renderFooter()}
-`;
+// Función para renderizar toda la estructura principal (navbar + main + footer)
+function renderLayout() {
+  app.innerHTML = `
+    ${renderNavbar()}
+    <main id="main-content" class="p-6 min-h-[70vh] transition-colors duration-300"></main>
+    ${renderFooter()}
+  `;
+}
+
+// Renderiza layout inicial
+renderLayout();
 
 // Router y navegación
 router();
-window.addEventListener('hashchange', router);
+window.addEventListener('hashchange', () => {
+  renderLayout();   // Vuelve a renderizar el navbar actualizado
+  router();
+  setTimeout(() => {
+    initializeSwiper();
+  }, 100);
+});
 
-// Tema claro/oscuro
+// Modo claro / oscuro y logout
 document.addEventListener('click', (e) => {
   if (e.target.id === 'theme-toggle') {
     document.documentElement.classList.toggle('dark');
     const isDark = document.documentElement.classList.contains('dark');
     e.target.textContent = isDark ? '☀️ Claro' : '🌙 Oscuro';
   }
+
+  if (e.target.id === 'logout-btn') {
+    localStorage.removeItem('nombreUsuario');
+    renderLayout();
+    router();
+  }
 });
 
-// Exporta la función Swiper para usarla después del router
+// Login: guarda nombre en localStorage
+document.addEventListener('submit', (e) => {
+  if (e.target.id === 'login-form') {
+    e.preventDefault();
+    const nombre = e.target.nombre.value.trim();
+    if (nombre) {
+      localStorage.setItem('nombreUsuario', nombre);
+      window.location.hash = '#/';
+      renderLayout(); // navbar con nombre
+      router();
+    }
+  }
+});
+
+// Swiper dinámico en secciones como Home
+window.addEventListener('DOMContentLoaded', () => {
+  initializeSwiper();
+
+  // Lógica del registro (registro.html)
+if (location.hash === '#/register') {
+  const form = document.querySelector('#register-form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nombre = form.nombre.value.trim();
+      const email = form.email.value.trim();
+      const area = form.area.value.trim();
+
+      if (!nombre || !email || !area) {
+        alert('Por favor completa todos los campos.');
+        return;
+      }
+
+      // Guardamos solo el nombre para mostrar en el navbar
+      localStorage.setItem('nombreUsuario', nombre);
+      alert('Registro exitoso');
+
+      location.hash = '#/';
+      location.reload();
+    });
+  }
+}
+
+});
+
+// Función para activar Swiper después del router
 export function initializeSwiper() {
   if (document.querySelector('.mySwiper')) {
     new Swiper('.mySwiper', {

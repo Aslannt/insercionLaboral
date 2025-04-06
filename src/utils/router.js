@@ -40,7 +40,7 @@ export async function router() {
     const html = await response.text();
     main.innerHTML = html;
 
-    // Si la ruta cargada es home.html, inicializa Swiper
+    // Si es la página principal, inicializar swiper
     if (
       hash === '#/' ||
       hash === '#/inicio' ||
@@ -49,8 +49,35 @@ export async function router() {
     ) {
       setTimeout(() => {
         initializeSwiper();
-      }, 100); // Asegura que el HTML esté inyectado antes
+      }, 100);
     }
+
+    // Si es perfil, carga su módulo JS
+    if (hash === '#/perfil') {
+      import('/src/pages/perfil.js').then(mod => {
+        setTimeout(() => mod.cargarPerfil(), 100);
+      });
+    }
+
+    // Si es registro, carga su módulo JS
+    if (hash === '#/register') {
+      import('/src/pages/register.js').then(mod => {
+        setTimeout(() => mod.iniciarRegistro(), 100);
+      });
+    }
+    if (hash === '#/cursos') {
+      import('/src/pages/cursos.js').then(mod => {
+        setTimeout(() => mod.cargarCursos(), 100);
+      });
+    }
+
+    if (hash === '#/empleos') {
+      import('/src/pages/empleos.js').then(mod => {
+        setTimeout(() => mod.cargarEmpleos(), 100);
+      });
+    }
+    
+    
 
   } catch (error) {
     main.innerHTML = `
