@@ -10,7 +10,7 @@ export function renderNavbar() {
         <li><a href="/#/empleos" class="hover:underline">Empleos</a></li>
         <li><a href="/#/cursos" class="hover:underline">Cursos</a></li>
         <li><a href="/#/comunidad" class="hover:underline">Comunidad</a></li>
-        <li><a href="/#/perfil" class="hover:underline">Perfil</a></li>
+        <li><a href="https://forms.gle/H8WX6xLLBGep7eeM7" class="hover:underline" target="_blank" rel="noopener noreferrer">Encuesta de satisfacción</a></li>
       </ul>
 
       <div class="flex items-center gap-2">

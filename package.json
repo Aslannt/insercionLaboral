@@ -6,6 +6,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "firebase": "^11.8.1",
     "swiper": "^11.2.6"
   },
   "devDependencies": {
