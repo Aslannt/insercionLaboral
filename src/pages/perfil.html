@@ -1,0 +1,53 @@
+<section class="py-12 px-6 space-y-12 max-w-4xl mx-auto">
+
+    <!-- Encabezado -->
+    <div class="text-center" data-aos="fade-down">
+      <img src="/src/assets/img/user-default.png" alt="Foto de perfil" class="w-24 h-24 mx-auto rounded-full shadow mb-4 object-cover">
+      <h2 class="text-3xl font-bold mb-2">Mi Perfil</h2>
+      <p class="text-gray-600 dark:text-gray-300">Consulta y administra tu información personal y actividad en la plataforma.</p>
+    </div>
+  
+    <!-- Información Personal -->
+    <div class="bg-white dark:bg-gray-800 p-6 rounded shadow space-y-4" data-aos="fade-up">
+      <h3 class="text-xl font-semibold mb-3">👤 Información Personal</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <p><strong>👥 Nombre:</strong> <span id="perfil-nombre">—</span></p>
+        <p><strong>📧 Correo:</strong> <span id="perfil-email">—</span></p>
+        <p><strong>🆔 Documento:</strong> <span id="perfil-documento">—</span></p>
+        <p><strong>🎓 Nivel educativo:</strong> <span id="perfil-nivel">—</span></p>
+        <p><strong>💼 Área de interés:</strong> <span id="perfil-interes">—</span></p>
+      </div>
+    </div>
+  
+    <!-- Progreso en Cursos -->
+    <div class="bg-white dark:bg-gray-800 p-6 rounded shadow space-y-4" data-aos="fade-up" data-aos-delay="100">
+      <h3 class="text-xl font-semibold mb-3">📘 Progreso en Cursos</h3>
+      <ul id="lista-cursos" class="space-y-3 text-sm">
+        <li class="text-gray-500">No hay cursos completados aún.</li>
+      </ul>
+    </div>
+  
+    <!-- Postulaciones -->
+    <div class="bg-white dark:bg-gray-800 p-6 rounded shadow space-y-4" data-aos="fade-up" data-aos-delay="200">
+      <h3 class="text-xl font-semibold mb-3">📄 Mis Postulaciones</h3>
+      <ul id="lista-postulaciones" class="text-sm list-disc list-inside space-y-2">
+        <li>No tienes postulaciones aún.</li>
+      </ul>
+    </div>
+  
+    <!-- Botón cerrar sesión -->
+    <div class="text-center mt-6" data-aos="fade-in">
+      <button id="logout-btn" class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700">
+        Cerrar sesión
+      </button>
+    </div>
+  
+    <!-- Botón volver al inicio -->
+    <div class="text-center mt-10" data-aos="fade-up">
+      <a href="#/" class="inline-block bg-blue-700 text-white px-5 py-2 rounded hover:bg-blue-800 transition">
+        ← Volver al inicio
+      </a>
+    </div>
+  
+  </section>
+  

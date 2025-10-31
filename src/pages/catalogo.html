@@ -1,0 +1,35 @@
+<section class="text-center py-12 px-6 space-y-10">
+
+  <header data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-2">Catálogo de Servicios</h2>
+    <p class="text-lg max-w-3xl mx-auto">
+      Lista de servicios disponibles, sus acuerdos de nivel de servicio (SLA) y responsables.
+    </p>
+  </header>
+
+  <!-- Controles -->
+  <div class="max-w-5xl mx-auto grid gap-4 md:grid-cols-3" data-aos="fade-up">
+    <input id="svc-search" type="text" placeholder="Buscar servicio..."
+      class="px-3 py-2 rounded border dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+    <select id="svc-cat" class="px-3 py-2 rounded border dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+      <option value="">Todas las categorías</option>
+    </select>
+    <select id="svc-sla" class="px-3 py-2 rounded border dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+      <option value="">Todos los SLA</option>
+      <option value="4h">≤ 4h</option>
+      <option value="24h">≤ 24h</option>
+      <option value="72h">≤ 72h</option>
+    </select>
+  </div>
+
+  <!-- Grid de servicios -->
+  <div id="svc-grid" class="max-w-6xl mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-aos="fade-up">
+    <!-- cards via JS -->
+  </div>
+
+  <div class="text-center" data-aos="fade-up">
+    <a href="#/soporte" class="inline-block bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800">
+      Levantar solicitud de soporte →
+    </a>
+  </div>
+</section>

@@ -1,0 +1,84 @@
+<section class="py-12 px-6 space-y-10 max-w-6xl mx-auto">
+
+  <header class="text-center" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-2">Mesa de Ayuda</h2>
+    <p class="text-lg">Registra incidencias o solicitudes. Las clasificaremos por servicio y prioridad.</p>
+  </header>
+
+  <!-- Formulario -->
+  <form id="ticket-form" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow space-y-4" data-aos="fade-up">
+    <div class="grid md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm mb-1">Servicio</label>
+        <select id="t-servicio" required
+          class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:border-gray-600">
+          <option value="">Selecciona...</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm mb-1">Prioridad</label>
+        <select id="t-prioridad" required
+          class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:border-gray-600">
+          <option value="Baja">Baja</option>
+          <option value="Media">Media</option>
+          <option value="Alta">Alta</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-sm mb-1">Asunto</label>
+      <input id="t-asunto" required placeholder="Ej. No puedo postularme a un empleo"
+        class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:border-gray-600">
+    </div>
+
+    <div>
+      <label class="block text-sm mb-1">Descripción</label>
+      <textarea id="t-desc" rows="4" required
+        class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:border-gray-600"
+        placeholder="Cuéntanos qué ocurre, pasos que seguiste, capturas, etc."></textarea>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm mb-1">Correo de contacto</label>
+        <input id="t-email" type="email" required placeholder="tu@correo.com"
+          class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:border-gray-600">
+      </div>
+      <div>
+        <label class="block text-sm mb-1">Impacto</label>
+        <select id="t-impacto" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:border-gray-600">
+          <option value="Usuario individual">Usuario individual</option>
+          <option value="Varios usuarios">Varios usuarios</option>
+          <option value="Servicio crítico">Servicio crítico</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="bg-blue-700 text-white px-5 py-2 rounded hover:bg-blue-800">Crear ticket</button>
+  </form>
+
+  <!-- Controles de lista -->
+  <div class="grid md:grid-cols-3 gap-4" data-aos="fade-up">
+    <input id="f-buscar" placeholder="Buscar en tickets..."
+      class="px-3 py-2 rounded border dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+    <select id="f-servicio" class="px-3 py-2 rounded border dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+      <option value="">Todos los servicios</option>
+    </select>
+    <select id="f-estado" class="px-3 py-2 rounded border dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+      <option value="">Todos los estados</option>
+      <option>Abierto</option>
+      <option>En progreso</option>
+      <option>Resuelto</option>
+    </select>
+  </div>
+
+  <!-- Lista -->
+  <div id="tickets-list" class="grid gap-4" data-aos="fade-up">
+    <!-- ítems via JS -->
+  </div>
+
+  <p class="text-xs text-gray-500 text-center" data-aos="fade-up">
+    Tip: para ver controles de administración, guarda <code>localStorage.isAdmin = "1"</code> en tu navegador.
+  </p>
+</section>
