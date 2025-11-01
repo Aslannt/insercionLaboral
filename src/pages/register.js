@@ -1,10 +1,9 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
-import { app, db } from "../firebase"; // Ajusta si tu ruta es distinta
+// REEMPLAZAR TODO el archivo por esto:
+import { doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+import { registerEmailPassword, db } from "../firebase.js";
 
 export function iniciarRegistro() {
   const form = document.querySelector('#registro-form');
-  const auth = getAuth(app);
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -15,69 +14,51 @@ export function iniciarRegistro() {
       email: form.email.value.trim(),
       documento: form.documento.value.trim(),
       nivel: form.nivel.value,
-      interes: form.interes.value.trim()
+      interes: form.interes.value.trim(),
+      password: form.password.value.trim()
     };
 
-    let valido = true;
-
-    if (datos.nombre.length < 2) {
-      mostrarError(form.nombre, 'El nombre debe tener al menos 2 caracteres.');
-      valido = false;
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(datos.email)) {
-      mostrarError(form.email, 'Ingrese un correo válido.');
-      valido = false;
-    }
-
-    if (!/^\d{6,}$/.test(datos.documento)) {
-      mostrarError(form.documento, 'El documento debe contener al menos 6 dígitos numéricos.');
-      valido = false;
-    }
-
-    if (!datos.nivel) {
-      mostrarError(form.nivel, 'Seleccione un nivel educativo.');
-      valido = false;
-    }
-
-    if (datos.interes.length < 2) {
-      mostrarError(form.interes, 'Ingrese un área de interés válida.');
-      valido = false;
-    }
-
-    if (!valido) return;
+    let ok = true;
+    if (datos.nombre.length < 2) { err(form.nombre,'Mín. 2 caracteres'); ok = false; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(datos.email)) { err(form.email,'Correo inválido'); ok = false; }
+    if (!/^\d{6,}$/.test(datos.documento)) { err(form.documento,'Al menos 6 dígitos'); ok = false; }
+    if (!datos.nivel) { err(form.nivel,'Selecciona nivel'); ok = false; }
+    if (datos.interes.length < 2) { err(form.interes,'Muy corto'); ok = false; }
+    if (datos.password.length < 8) { err(form.password,'Min. 8 caracteres'); ok = false; }
+    if (!ok) return;
 
     try {
-      const password = datos.documento;
-
-      // Crear el usuario
-      const userCredential = await createUserWithEmailAndPassword(auth, datos.email, password);
-      const user = userCredential.user;
-
-      // Guardar datos en Firestore
-      await addDoc(collection(db, "usuarios"), {
-        uid: user.uid,
-        ...datos
+      // Crea usuario + /users/{uid} con role candidate
+      const user = await registerEmailPassword({
+        fullName: datos.nombre,
+        email: datos.email,
+        password: datos.password,
+        role: "candidate",
       });
 
-      // LocalStorage (opcional)
-      localStorage.setItem('datosUsuario', JSON.stringify(datos));
+      // Guarda campos extra en el MISMO doc de users/{uid}
+      await setDoc(doc(db, "users", user.uid), {
+        document: datos.documento,
+        education_level: datos.nivel,
+        interest_area: datos.interes,
+        updated_at: serverTimestamp()
+      }, { merge: true });
+
+      // cache UI opcional
       localStorage.setItem('nombreUsuario', datos.nombre);
 
-      // ✅ Alerta y redirección
-      alert('✅ Registro exitoso. Ahora puedes iniciar sesión.');
+      alert('✅ Registro exitoso. Ahora inicia sesión.');
       window.location.hash = '#/login';
-
     } catch (error) {
-      console.error("Error en el registro:", error);
-      mostrarError(form.email, 'No se pudo registrar el usuario. ¿Ya existe el correo?');
+      console.error(error);
+      err(form.email, 'No se pudo registrar. ¿El correo ya existe?');
     }
   });
 }
 
-function mostrarError(input, mensaje) {
-  const error = document.createElement('p');
-  error.textContent = mensaje;
-  error.className = 'text-red-500 text-xs mt-1 error-text';
-  input.parentElement.appendChild(error);
+function err(input, msg) {
+  const p = document.createElement('p');
+  p.textContent = msg;
+  p.className = 'text-red-500 text-xs mt-1 error-text';
+  input.parentElement.appendChild(p);
 }

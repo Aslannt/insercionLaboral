@@ -1,4 +1,5 @@
 import { initializeSwiper } from '../main.js';
+import { auth } from '../firebase.js';
 
 export async function router() {
   const main = document.querySelector('#main-content');
@@ -8,6 +9,12 @@ export async function router() {
   const baseHash = fullHash.split('?')[0]; // nos quedamos solo con la ruta
 
   let routePath;
+// NUEVO:
+const user = auth.currentUser;
+if (baseHash === '#/perfil' && !user) {
+  window.location.hash = '#/login';
+  return;
+}
 
   switch (baseHash) {
     case '#/empleos':

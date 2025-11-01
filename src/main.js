@@ -7,6 +7,11 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import Swiper from 'swiper';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+// NUEVO:
+import {
+  auth, onAuthChanged, logout
+} from './firebase.js';
+
 
 const app = document.querySelector('#app');
 
@@ -47,19 +52,26 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Login: guarda nombre en localStorage
-document.addEventListener('submit', (e) => {
-  if (e.target.id === 'login-form') {
-    e.preventDefault();
-    const nombre = e.target.nombre.value.trim();
-    if (nombre) {
-      localStorage.setItem('nombreUsuario', nombre);
-      window.location.hash = '#/';
-      renderLayout(); // navbar con nombre
-      router();
-    }
+
+// Reemplaza dentro de document.addEventListener('click', ...)
+if (e.target.id === 'logout-btn') {
+  await logout();                 // <-- usar Firebase
+  localStorage.removeItem('nombreUsuario'); // opcional limpiar cache UI
+  renderLayout();
+  // justo después de renderLayout() y antes/igual que router();
+onAuthChanged((user) => {
+  if (user) {
+    localStorage.setItem('nombreUsuario', user.displayName || user.email);
+  } else {
+    localStorage.removeItem('nombreUsuario');
   }
+  renderLayout();
+  router();
 });
+
+  router();
+}
+
 
 // Swiper dinámico en secciones como Home
 window.addEventListener('DOMContentLoaded', () => {
